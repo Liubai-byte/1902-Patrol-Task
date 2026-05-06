@@ -1,0 +1,9 @@
+<!--spark rtabmap-->
+<launch>
+    <!-- camera -->
+    <arg name="camera_types" default="astrapro" doc="camera type [astrapro, astra]" />
+    <!-- spark base driver -->
+    <include file="$(find spark_rtabmap)/launch/rtab_demo.launch">
+        <arg name="camera_types"    value="$(arg camera_types)" />
+    </include>
+</launch> 

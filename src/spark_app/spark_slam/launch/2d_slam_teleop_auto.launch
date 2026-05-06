@@ -1,0 +1,16 @@
+<launch>
+    <arg name="lidar_type_tel" default="3iroboticslidar2" doc="lidar type [3iroboticslidar2, ydlidar_g2]"/>
+    <arg name="slam_methods_tel" default="karto" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
+    <arg name="camera_types"    default="astrapro"/>
+    
+    <include file="$(find spark_slam)/launch/2d_slam.launch">
+        <arg name="slam_methods"    value="$(arg slam_methods_tel)"/>
+        <arg name="camera_types"    value="$(arg camera_types)"/>
+        <arg name="lidar_type_tel"  value="$(arg lidar_type_tel)"/>
+    </include> 
+    
+    <node pkg="spark_teleop" type="keyboard_control.sh" name="kc_2d" />
+    
+    <node pkg="spark_slam" type="cmd_save_map.sh" name="csm_2d" />
+    
+</launch>
